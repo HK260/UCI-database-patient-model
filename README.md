@@ -16,11 +16,13 @@ Metrics: Precision, Recall, Overall Accuracy.
 Evaluated with random under-sampling to handle class imbalance.
 Metrics: Precision, Recall, Overall Accuracy.
 
-## Next Steps
+## Insights
 
 Logistic Regression with Random Under-sampling: This combination shows a balanced trade-off between recall and accuracy. It is suitable when both classes' recall is critical, and some reduction in overall accuracy is acceptable.
 
 Random Forest with Random Under-sampling: This combination should be used when the priority is to identify readmitted patients (higher recall), and overall accuracy is less critical.
+
+## Next Steps
 
 Further Tuning: Further hyperparameter tuning and combining sampling methods (e.g., SMOTE + undersampling) can be explored to enhance performance.
 
