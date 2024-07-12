@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This project focuses on an analytical approach to predict patient readmission rates using a UCI database dataset. The primary objective is to compare the performance of Logistic Regression and Random Forest models under various class balancing techniques. Our aim is to determine which model achieves the best balance among precision, recall, and overall accuracy for predicting both readmitted and non-readmitted patient outcomes.
+This project focuses on an analytical approach to predict patient readmission rates using a UCI database dataset. The primary objective is to compare the performance of Logistic Regression and Random Forest models under various class balancing techniques. Our aim is to determine which model achieves the best balance among precision, recall, and overall accuracy for predicting both readmitted and non-readmitted patient outcomes and develop an api to get direct input from the hospitals
 
 ## Models Evaluated
 
@@ -44,9 +44,9 @@ The Flask application loads the trained model and exposes an endpoint to make pr
 
 - **POST /predict**: Accepts JSON input and returns the prediction.
 
-#### JSON Input Example
+#### JSON Input and Output Example
 
-```json
+````json
 {
     "age": 5,
     "discharge_disposition_id": 3,
@@ -72,22 +72,12 @@ The Flask application loads the trained model and exposes an endpoint to make pr
     "insulin_treatment": 2
 }
 
-#### JSON Output Example
+```json
 {
     "prediction": [
         "Not readmitted"
     ]
 }
 
-## Summary
 
-**Purpose**: To predict patient readmission rates using a trained model.
-
-**Endpoint**: `POST /predict` which accepts JSON data.
-
-**Input Data**: Preprocessed patient data including various features but excluding the `readmitted` field.
-
-**Output**: Human-readable prediction labels ("Not readmitted" or "Readmitted").
-
-The Flask API provides a straightforward way to integrate the predictive model into applications, enabling real-time predictions of patient readmission status.
-```
+````
