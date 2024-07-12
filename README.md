@@ -8,14 +8,14 @@ This project focuses on an analytical approach to predict patient readmission ra
 
 ### Logistic Regression
 
-Techniques Used: Different sampling strategies to mitigate class imbalance.
-Key Metrics: Precision, Recall, Overall Accuracy.
+Techniques Used: Different sampling strategies to mitigate class imbalance.  
+Key Metrics: Precision, Recall, Overall Accuracy.  
 Observation: Shows a balanced trade-off between precision and recall. Effective when minimizing false negatives is as critical as minimizing false positives.
 
 ### Random Forest
 
-Techniques Used: Random under-sampling to address class imbalance.
-Key Metrics: Precision, Recall, Overall Accuracy.
+Techniques Used: Random under-sampling to address class imbalance.  
+Key Metrics: Precision, Recall, Overall Accuracy.  
 Observation: Best used when high recall for readmitted patients is prioritized, even at the cost of reduced overall accuracy.
 
 ## Insights
@@ -32,6 +32,62 @@ Data Enrichment: Enhancing the dataset, particularly by increasing the number of
 
 Feature Engineering and Selection: Develop new features or refine the feature selection process to boost model efficacy. Focus on extracting more nuanced insights from existing data or incorporating additional relevant data sources.
 
-## Conclusion
+## API Development
 
-The ongoing analysis has highlighted the nuanced trade-offs between different models and sampling techniques in handling class imbalance. The next steps will focus on leveraging these insights to optimize model configurations for better predictive performance in real-world healthcare settings.
+We have developed a Flask API to serve the machine learning model predictions. This allows users to input perprocessed-patient data and receive predictions about readmission status.
+
+### Flask Application
+
+The Flask application loads the trained model and exposes an endpoint to make predictions.
+
+#### Endpoint
+
+- **POST /predict**: Accepts JSON input and returns the prediction.
+
+#### JSON Input Example
+
+```json
+{
+    "age": 5,
+    "discharge_disposition_id": 3,
+    "admission_source_id": 2,
+    "time_in_hospital": 1,
+    "num_lab_procedures": 41,
+    "num_procedures": 0,
+    "num_medications": 1,
+    "diag_1": 3,
+    "diag_2": 14,
+    "diag_3": 14,
+    "max_glu_serum": 2,
+    "metformin": -2,
+    "repaglinide": -2,
+    "glimepiride": -2,
+    "glipizide": -2,
+    "pioglitazone": -2,
+    "insulin": -2,
+    "diabetesMed": 0,
+    "readmitted": 0,
+    "preceding_year_visits": 0,
+    "number_changes": 0,
+    "insulin_treatment": 2
+}
+
+#### JSON Output Example
+{
+    "prediction": [
+        "Not readmitted"
+    ]
+}
+
+## Summary
+
+**Purpose**: To predict patient readmission rates using a trained model.
+
+**Endpoint**: `POST /predict` which accepts JSON data.
+
+**Input Data**: Preprocessed patient data including various features but excluding the `readmitted` field.
+
+**Output**: Human-readable prediction labels ("Not readmitted" or "Readmitted").
+
+The Flask API provides a straightforward way to integrate the predictive model into applications, enabling real-time predictions of patient readmission status.
+```
